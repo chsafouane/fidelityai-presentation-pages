@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FidelityAI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        (function() {
+            var t = localStorage.getItem('fidelity-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
 </head>
 <body class="min-h-screen antialiased">
     <header class="sticky top-0 z-50 header-glass">
@@ -16,9 +22,17 @@
                 <a href="#company" class="nav-link rounded-lg px-3 py-2 text-sm">Company</a>
                 <a href="#contact" class="nav-link rounded-lg px-3 py-2 text-sm">Contact</a>
                 <a href="coming-soon.html" class="nav-link rounded-lg px-3 py-2 text-sm">Sign in</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+                </button>
                 <a href="coming-soon.html" class="btn-primary inline-flex h-9 items-center justify-center rounded-lg px-4 text-sm font-medium">Open SaaS</a>
             </nav>
             <div class="flex items-center gap-2 sm:hidden">
+                <button class="theme-toggle" id="theme-toggle-mobile" aria-label="Toggle theme">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+                </button>
                 <a href="coming-soon.html" class="nav-link rounded-lg px-2.5 py-2 text-xs">Sign in</a>
                 <a href="coming-soon.html" class="btn-primary inline-flex h-9 items-center justify-center rounded-lg px-3 text-xs font-medium">SaaS</a>
             </div>
@@ -35,7 +49,7 @@
     <main class="max-w-7xl mx-auto w-full space-y-10 px-4 py-10 sm:px-6 sm:space-y-14 lg:px-8 lg:space-y-16 lg:py-14">
 
         <!-- Hero -->
-        <section id="product" class="ambient-bg grid-pattern rounded-xl overflow-hidden p-6 sm:p-10 lg:p-14 animate-fade-up" style="background: linear-gradient(135deg, #070b14, #0e1218, #070b14); border: 2px solid var(--border-subtle);">
+        <section id="product" class="section-hero ambient-bg grid-pattern rounded-xl overflow-hidden p-6 sm:p-10 lg:p-14 animate-fade-up">
             <div class="relative z-10 mx-auto max-w-3xl space-y-6 text-center">
                 <span class="badge glow-pulse inline-flex rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest">
                     FidelityAI for Claims Operations
@@ -91,21 +105,21 @@
             <div class="grid gap-4 md:grid-cols-3">
                 <article class="glass-card accent-blue h-full rounded-xl p-6">
                     <div class="space-y-2 pb-2">
-                        <span class="inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold" style="background: oklch(65% .25 265 / 0.15); border: 1px solid oklch(65% .25 265 / 0.3); color: oklch(75% .2 265);">Step 1</span>
+                        <span class="step-badge-blue inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold">Step 1</span>
                         <h3 class="font-display text-base sm:text-lg font-bold">Ingest Claim Evidence</h3>
                     </div>
                     <p class="text-sm leading-relaxed" style="color: var(--muted-fg);">Capture claim forms, supporting documents, images, and transcripts in one guided intake flow.</p>
                 </article>
                 <article class="glass-card accent-pink h-full rounded-xl p-6">
                     <div class="space-y-2 pb-2">
-                        <span class="inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold" style="background: oklch(65% .25 350 / 0.15); border: 1px solid oklch(65% .25 350 / 0.3); color: oklch(75% .2 350);">Step 2</span>
+                        <span class="step-badge-pink inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold">Step 2</span>
                         <h3 class="font-display text-base sm:text-lg font-bold">Run Multi-Agent Review</h3>
                     </div>
                     <p class="text-sm leading-relaxed" style="color: var(--muted-fg);">Specialized AI agents evaluate coverage fit, inconsistencies, fraud indicators, and policy alignment in parallel.</p>
                 </article>
                 <article class="glass-card accent-orange h-full rounded-xl p-6">
                     <div class="space-y-2 pb-2">
-                        <span class="inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold" style="background: oklch(70% .20 50 / 0.15); border: 1px solid oklch(70% .20 50 / 0.3); color: oklch(80% .15 50);">Step 3</span>
+                        <span class="step-badge-orange inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold">Step 3</span>
                         <h3 class="font-display text-base sm:text-lg font-bold">Deliver Explainable Decision Support</h3>
                     </div>
                     <p class="text-sm leading-relaxed" style="color: var(--muted-fg);">Analysts receive transparent summaries, clear rationale, and confidence-backed recommendations.</p>
@@ -114,7 +128,7 @@
         </section>
 
         <!-- Trust & Benefits -->
-        <section class="w-full space-y-6 rounded-xl p-6 sm:p-8 lg:p-10 animate-fade-up delay-3" style="background: var(--card-transparent); backdrop-filter: blur(12px); border: 2px solid var(--border-subtle);">
+        <section class="card-wrapper w-full space-y-6 rounded-xl p-6 sm:p-8 lg:p-10 animate-fade-up delay-3">
             <div class="space-y-2">
                 <span class="badge inline-flex rounded-full px-3 py-1 text-xs">Trust and Benefits</span>
                 <h2 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">Built for high-stakes insurance decisions</h2>
@@ -136,7 +150,7 @@
         </section>
 
         <!-- Company -->
-        <section id="company" class="w-full space-y-5 rounded-xl p-6 sm:p-8 lg:p-10 animate-fade-up delay-4" style="background: var(--card-transparent); backdrop-filter: blur(12px); border: 2px solid var(--border-subtle);">
+        <section id="company" class="card-wrapper w-full space-y-5 rounded-xl p-6 sm:p-8 lg:p-10 animate-fade-up delay-4">
             <h2 class="font-display text-3xl font-bold tracking-tight">Company</h2>
             <p class="max-w-3xl text-sm leading-relaxed sm:text-base" style="color: var(--muted-fg);">
                 We build practical AI systems for insurance operations, helping teams make faster decisions with confidence.
@@ -161,7 +175,7 @@
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="w-full rounded-xl p-6 sm:p-8 lg:p-10 ambient-bg overflow-hidden animate-fade-up delay-5" style="background: linear-gradient(135deg, #070b14, #0e1218, #070b14); border: 2px solid var(--border-subtle);">
+        <section id="contact" class="section-hero w-full rounded-xl p-6 sm:p-8 lg:p-10 ambient-bg overflow-hidden animate-fade-up delay-5">
             <div class="relative z-10">
                 <h2 class="font-display text-3xl font-bold tracking-tight">Contact</h2>
                 <p class="mt-3 text-sm leading-relaxed sm:text-base" style="color: var(--muted-fg);">

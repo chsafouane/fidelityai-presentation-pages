@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FidelityAI SaaS - Coming Soon</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        (function() {
+            var t = localStorage.getItem('fidelity-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
 </head>
 <body class="min-h-screen antialiased">
     <header class="sticky top-0 z-50 header-glass">
@@ -16,9 +22,17 @@
                 <a href="index.html#company" class="nav-link rounded-lg px-3 py-2 text-sm">Company</a>
                 <a href="index.html#contact" class="nav-link rounded-lg px-3 py-2 text-sm">Contact</a>
                 <a href="coming-soon.html" class="nav-link rounded-lg px-3 py-2 text-sm">Sign in</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+                </button>
                 <a href="coming-soon.html" class="btn-primary inline-flex h-9 items-center justify-center rounded-lg px-4 text-sm font-medium">Open SaaS</a>
             </nav>
             <div class="flex items-center gap-2 sm:hidden">
+                <button class="theme-toggle" id="theme-toggle-mobile" aria-label="Toggle theme">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+                </button>
                 <a href="coming-soon.html" class="nav-link rounded-lg px-2.5 py-2 text-xs">Sign in</a>
                 <a href="coming-soon.html" class="btn-primary inline-flex h-9 items-center justify-center rounded-lg px-3 text-xs font-medium">SaaS</a>
             </div>
@@ -33,7 +47,7 @@
     </header>
 
     <main class="max-w-7xl mx-auto w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-        <section class="ambient-bg grid-pattern rounded-xl overflow-hidden p-6 sm:p-10 lg:p-14 animate-fade-up" style="background: linear-gradient(135deg, #070b14, #0e1218, #070b14); border: 2px solid var(--border-subtle);">
+        <section class="section-hero ambient-bg grid-pattern rounded-xl overflow-hidden p-6 sm:p-10 lg:p-14 animate-fade-up">
             <div class="relative z-10 mx-auto max-w-3xl space-y-6 text-center">
                 <span class="badge glow-pulse inline-flex rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest">
                     FidelityAI SaaS
@@ -72,6 +86,7 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
         if (params.get('submitted') === '1') {

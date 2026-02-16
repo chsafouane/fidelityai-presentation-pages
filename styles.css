@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
 
+/* ========================================
+   DARK THEME (default)
+   ======================================== */
 :root {
     --bg: oklch(15% .02 265);
     --bg-secondary: oklch(12% .015 265);
@@ -9,6 +12,7 @@
     --primary: oklch(65% .25 265);
     --primary-hover: oklch(60% .25 265);
     --primary-glow: oklch(65% .25 265 / 0.25);
+    --primary-btn-text: oklch(98% 0 0);
     --border: oklch(28% .02 265);
     --border-subtle: oklch(28% .02 265 / 0.5);
     --muted: oklch(22% .015 265);
@@ -16,8 +20,110 @@
     --secondary: oklch(25% .02 265);
     --accent-pink: #f32aa4;
     --accent-orange: #f57400;
+
+    /* Section gradient stops */
+    --gradient-a: #070b14;
+    --gradient-b: #0e1218;
+
+    /* Header glass */
+    --header-bg: oklch(15% .02 265 / 0.85);
+
+    /* Footer bg */
+    --footer-bg: oklch(12% .015 265);
+
+    /* Ambient radials */
+    --ambient-1: oklch(65% .25 265 / 0.06);
+    --ambient-2: oklch(65% .15 300 / 0.05);
+
+    /* Grid pattern line color */
+    --grid-line: oklch(25% .02 265 / 0.05);
+
+    /* Step badge colors — blue */
+    --step-blue-bg: oklch(65% .25 265 / 0.15);
+    --step-blue-border: oklch(65% .25 265 / 0.3);
+    --step-blue-text: oklch(75% .2 265);
+
+    /* Step badge colors — pink */
+    --step-pink-bg: oklch(65% .25 350 / 0.15);
+    --step-pink-border: oklch(65% .25 350 / 0.3);
+    --step-pink-text: oklch(75% .2 350);
+
+    /* Step badge colors — orange */
+    --step-orange-bg: oklch(70% .20 50 / 0.15);
+    --step-orange-border: oklch(70% .20 50 / 0.3);
+    --step-orange-text: oklch(80% .15 50);
+
+    /* Card hover glow */
+    --card-glow-blue: oklch(65% .25 265 / 0.15);
+    --card-glow-pink: oklch(65% .25 350 / 0.15);
+    --card-glow-orange: oklch(70% .20 50 / 0.15);
+
+    /* Success message */
+    --success-bg: oklch(30% .1 150 / 0.2);
+    --success-border: oklch(60% .2 150 / 0.4);
+    --success-text: oklch(80% .15 150);
+
+    /* Theme transition duration */
+    --theme-speed: 0.35s;
 }
 
+/* ========================================
+   LIGHT THEME
+   ======================================== */
+[data-theme="light"] {
+    --bg: oklch(98.5% .005 265);
+    --bg-secondary: oklch(96% .008 265);
+    --fg: oklch(18% .02 265);
+    --card: oklch(100% 0 0);
+    --card-transparent: oklch(100% 0 0 / 0.7);
+    --primary: oklch(55% .28 265);
+    --primary-hover: oklch(50% .28 265);
+    --primary-glow: oklch(55% .28 265 / 0.18);
+    --primary-btn-text: oklch(100% 0 0);
+    --border: oklch(88% .01 265);
+    --border-subtle: oklch(90% .008 265);
+    --muted: oklch(95% .005 265);
+    --muted-fg: oklch(45% .03 265);
+    --secondary: oklch(94% .008 265);
+    --accent-pink: #d9238f;
+    --accent-orange: #d06400;
+
+    --gradient-a: oklch(96% .01 265);
+    --gradient-b: oklch(98% .005 265);
+
+    --header-bg: oklch(98.5% .005 265 / 0.88);
+
+    --footer-bg: oklch(96% .008 265);
+
+    --ambient-1: oklch(55% .28 265 / 0.04);
+    --ambient-2: oklch(55% .15 300 / 0.03);
+
+    --grid-line: oklch(75% .02 265 / 0.08);
+
+    --step-blue-bg: oklch(55% .28 265 / 0.08);
+    --step-blue-border: oklch(55% .28 265 / 0.2);
+    --step-blue-text: oklch(45% .22 265);
+
+    --step-pink-bg: oklch(65% .25 350 / 0.08);
+    --step-pink-border: oklch(65% .25 350 / 0.2);
+    --step-pink-text: oklch(45% .2 350);
+
+    --step-orange-bg: oklch(70% .20 50 / 0.08);
+    --step-orange-border: oklch(70% .20 50 / 0.2);
+    --step-orange-text: oklch(45% .18 50);
+
+    --card-glow-blue: oklch(55% .28 265 / 0.08);
+    --card-glow-pink: oklch(65% .25 350 / 0.08);
+    --card-glow-orange: oklch(70% .20 50 / 0.08);
+
+    --success-bg: oklch(95% .05 150);
+    --success-border: oklch(75% .15 150);
+    --success-text: oklch(35% .12 150);
+}
+
+/* ========================================
+   BASE
+   ======================================== */
 * {
     scroll-behavior: smooth;
     box-sizing: border-box;
@@ -28,13 +134,16 @@ body {
     font-family: 'Inter', system-ui, sans-serif;
     background: var(--bg);
     color: var(--fg);
+    transition: background var(--theme-speed) ease, color var(--theme-speed) ease;
 }
 
 .font-display {
     font-family: 'Space Grotesk', 'Inter', sans-serif;
 }
 
-/* Ambient background effects */
+/* ========================================
+   AMBIENT BACKGROUND EFFECTS
+   ======================================== */
 .ambient-bg {
     position: relative;
 }
@@ -43,13 +152,16 @@ body {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse 600px 400px at 20% 20%, oklch(65% .25 265 / 0.06), transparent),
-        radial-gradient(ellipse 500px 350px at 80% 70%, oklch(65% .15 300 / 0.05), transparent);
+        radial-gradient(ellipse 600px 400px at 20% 20%, var(--ambient-1), transparent),
+        radial-gradient(ellipse 500px 350px at 80% 70%, var(--ambient-2), transparent);
     pointer-events: none;
     z-index: 0;
+    transition: background var(--theme-speed) ease;
 }
 
-/* Grid pattern overlay */
+/* ========================================
+   GRID PATTERN OVERLAY
+   ======================================== */
 .grid-pattern {
     position: relative;
 }
@@ -58,32 +170,107 @@ body {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(90deg, oklch(25% .02 265 / 0.05) 1px, transparent 1px),
-        linear-gradient(oklch(25% .02 265 / 0.05) 1px, transparent 1px);
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(var(--grid-line) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
     z-index: 0;
     border-radius: inherit;
 }
 
-/* Card glassmorphism hover */
+/* ========================================
+   SECTION GRADIENT (hero, contact, coming-soon hero)
+   ======================================== */
+.section-hero {
+    background: linear-gradient(135deg, var(--gradient-a), var(--gradient-b), var(--gradient-a));
+    border: 2px solid var(--border-subtle);
+    transition: background var(--theme-speed) ease, border-color var(--theme-speed) ease;
+}
+
+[data-theme="light"] .section-hero {
+    box-shadow: 0 1px 3px oklch(55% .28 265 / 0.06), 0 8px 24px oklch(55% .28 265 / 0.04);
+}
+
+/* ========================================
+   CARDS — GLASSMORPHISM / LIGHT SHADOW
+   ======================================== */
 .glass-card {
     background: var(--card-transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 2px solid var(--border-subtle);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease, background var(--theme-speed) ease;
 }
 .glass-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 8px 32px oklch(65% .25 265 / 0.15);
+    box-shadow: 0 8px 32px var(--card-glow-blue);
     transform: translateY(-2px);
 }
 
-/* Primary button glow */
+[data-theme="light"] .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 1px 3px oklch(0% 0 0 / 0.04), 0 4px 12px oklch(0% 0 0 / 0.03);
+}
+[data-theme="light"] .glass-card:hover {
+    box-shadow: 0 4px 20px var(--card-glow-blue);
+}
+
+/* Wrapper card (Trust, Company) */
+.card-wrapper {
+    background: var(--card-transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid var(--border-subtle);
+    transition: background var(--theme-speed) ease, border-color var(--theme-speed) ease, box-shadow var(--theme-speed) ease;
+}
+[data-theme="light"] .card-wrapper {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--card);
+    box-shadow: 0 1px 3px oklch(0% 0 0 / 0.04), 0 4px 12px oklch(0% 0 0 / 0.03);
+}
+
+/* ========================================
+   ACCENT CARD BORDERS
+   ======================================== */
+.accent-blue {
+    border-color: oklch(65% .25 265 / 0.3);
+}
+.accent-blue:hover {
+    border-color: oklch(65% .25 265);
+    box-shadow: 0 8px 32px var(--card-glow-blue);
+}
+
+.accent-pink {
+    border-color: oklch(65% .25 350 / 0.3);
+}
+.accent-pink:hover {
+    border-color: oklch(65% .25 350);
+    box-shadow: 0 8px 32px var(--card-glow-pink);
+}
+
+.accent-orange {
+    border-color: oklch(70% .20 50 / 0.3);
+}
+.accent-orange:hover {
+    border-color: oklch(70% .20 50);
+    box-shadow: 0 8px 32px var(--card-glow-orange);
+}
+
+[data-theme="light"] .accent-blue { border-color: oklch(55% .28 265 / 0.2); }
+[data-theme="light"] .accent-blue:hover { border-color: oklch(55% .28 265 / 0.5); }
+[data-theme="light"] .accent-pink { border-color: oklch(65% .25 350 / 0.2); }
+[data-theme="light"] .accent-pink:hover { border-color: oklch(65% .25 350 / 0.5); }
+[data-theme="light"] .accent-orange { border-color: oklch(70% .20 50 / 0.2); }
+[data-theme="light"] .accent-orange:hover { border-color: oklch(70% .20 50 / 0.5); }
+
+/* ========================================
+   BUTTONS
+   ======================================== */
 .btn-primary {
     background: var(--primary);
-    color: var(--fg);
+    color: var(--primary-btn-text);
     box-shadow: 0 4px 20px var(--primary-glow);
     transition: all 0.25s ease;
 }
@@ -93,7 +280,10 @@ body {
     transform: translateY(-1px);
 }
 
-/* Secondary button */
+[data-theme="light"] .btn-primary:hover {
+    box-shadow: 0 6px 28px oklch(55% .28 265 / 0.3);
+}
+
 .btn-secondary {
     background: var(--card);
     color: var(--fg);
@@ -106,47 +296,49 @@ body {
     transform: translateY(-1px);
 }
 
-/* Badge/pill */
+/* ========================================
+   BADGE / PILL
+   ======================================== */
 .badge {
     background: var(--muted);
     border: 1px solid var(--border-subtle);
     color: var(--muted-fg);
+    transition: background var(--theme-speed) ease, border-color var(--theme-speed) ease, color var(--theme-speed) ease;
 }
 
-/* Colored accent cards */
-.accent-blue {
-    border-color: oklch(65% .25 265 / 0.3);
+/* ========================================
+   STEP BADGES (colored)
+   ======================================== */
+.step-badge-blue {
+    background: var(--step-blue-bg);
+    border: 1px solid var(--step-blue-border);
+    color: var(--step-blue-text);
 }
-.accent-blue:hover {
-    border-color: oklch(65% .25 265);
-    box-shadow: 0 8px 32px oklch(65% .25 265 / 0.2);
+.step-badge-pink {
+    background: var(--step-pink-bg);
+    border: 1px solid var(--step-pink-border);
+    color: var(--step-pink-text);
 }
-
-.accent-pink {
-    border-color: oklch(65% .25 350 / 0.3);
-}
-.accent-pink:hover {
-    border-color: oklch(65% .25 350);
-    box-shadow: 0 8px 32px oklch(65% .25 350 / 0.2);
-}
-
-.accent-orange {
-    border-color: oklch(70% .20 50 / 0.3);
-}
-.accent-orange:hover {
-    border-color: oklch(70% .20 50);
-    box-shadow: 0 8px 32px oklch(70% .20 50 / 0.2);
+.step-badge-orange {
+    background: var(--step-orange-bg);
+    border: 1px solid var(--step-orange-border);
+    color: var(--step-orange-text);
 }
 
-/* Header blur */
+/* ========================================
+   HEADER
+   ======================================== */
 .header-glass {
-    background: oklch(15% .02 265 / 0.85);
+    background: var(--header-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-subtle);
+    transition: background var(--theme-speed) ease, border-color var(--theme-speed) ease;
 }
 
-/* Nav link hover */
+/* ========================================
+   NAV LINKS
+   ======================================== */
 .nav-link {
     color: var(--muted-fg);
     transition: color 0.2s ease;
@@ -155,12 +347,80 @@ body {
     color: var(--fg);
 }
 
-/* Gradient section divider */
-.section-gradient {
-    background: linear-gradient(135deg, #070b14, #0e1218, #070b14);
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer-border {
+    border-top: 1px solid var(--border-subtle);
+    background: var(--footer-bg);
+    transition: background var(--theme-speed) ease, border-color var(--theme-speed) ease;
 }
 
-/* Staggered reveal animation */
+/* ========================================
+   SUCCESS MESSAGE
+   ======================================== */
+.success-msg {
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: var(--success-text);
+}
+
+/* ========================================
+   THEME TOGGLE
+   ======================================== */
+.theme-toggle {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border-subtle);
+    background: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
+    flex-shrink: 0;
+}
+.theme-toggle:hover {
+    border-color: var(--primary);
+    background: var(--secondary);
+    transform: scale(1.08);
+}
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle .icon-sun {
+    color: var(--muted-fg);
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+}
+.theme-toggle .icon-moon {
+    color: var(--muted-fg);
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+[data-theme="light"] .theme-toggle .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+[data-theme="light"] .theme-toggle .icon-moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -183,9 +443,8 @@ body {
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
 
-/* Subtle glow pulse on hero badge */
 @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 8px oklch(65% .25 265 / 0.15); }
+    0%, 100% { box-shadow: 0 0 8px var(--primary-glow); }
     50% { box-shadow: 0 0 20px oklch(65% .25 265 / 0.3); }
 }
 
@@ -193,15 +452,7 @@ body {
     animation: glowPulse 3s ease-in-out infinite;
 }
 
-/* Success message dark theme */
-.success-msg {
-    background: oklch(30% .1 150 / 0.2);
-    border: 1px solid oklch(60% .2 150 / 0.4);
-    color: oklch(80% .15 150);
-}
-
-/* Footer styling */
-.footer-border {
-    border-top: 1px solid var(--border-subtle);
-    background: oklch(12% .015 265);
+[data-theme="light"] .glow-pulse {
+    animation: none;
+    box-shadow: 0 1px 4px oklch(55% .28 265 / 0.1);
 }
