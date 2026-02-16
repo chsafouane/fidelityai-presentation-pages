@@ -1,7 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
+
+:root {
+    --bg: oklch(15% .02 265);
+    --bg-secondary: oklch(12% .015 265);
+    --fg: oklch(98% 0 0);
+    --card: oklch(18% .015 265);
+    --card-transparent: oklch(18% .015 265 / 0.5);
+    --primary: oklch(65% .25 265);
+    --primary-hover: oklch(60% .25 265);
+    --primary-glow: oklch(65% .25 265 / 0.25);
+    --border: oklch(28% .02 265);
+    --border-subtle: oklch(28% .02 265 / 0.5);
+    --muted: oklch(22% .015 265);
+    --muted-fg: oklch(68% .05 265);
+    --secondary: oklch(25% .02 265);
+    --accent-pink: #f32aa4;
+    --accent-orange: #f57400;
+}
+
 * {
     scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 
 body {
     overflow-x: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.font-display {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+/* Ambient background effects */
+.ambient-bg {
+    position: relative;
+}
+.ambient-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 600px 400px at 20% 20%, oklch(65% .25 265 / 0.06), transparent),
+        radial-gradient(ellipse 500px 350px at 80% 70%, oklch(65% .15 300 / 0.05), transparent);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Grid pattern overlay */
+.grid-pattern {
+    position: relative;
+}
+.grid-pattern::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, oklch(25% .02 265 / 0.05) 1px, transparent 1px),
+        linear-gradient(oklch(25% .02 265 / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
+}
+
+/* Card glassmorphism hover */
+.glass-card {
+    background: var(--card-transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid var(--border-subtle);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+.glass-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 32px oklch(65% .25 265 / 0.15);
+    transform: translateY(-2px);
+}
+
+/* Primary button glow */
+.btn-primary {
+    background: var(--primary);
+    color: var(--fg);
+    box-shadow: 0 4px 20px var(--primary-glow);
+    transition: all 0.25s ease;
+}
+.btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 28px oklch(65% .25 265 / 0.4);
+    transform: translateY(-1px);
+}
+
+/* Secondary button */
+.btn-secondary {
+    background: var(--card);
+    color: var(--fg);
+    border: 2px solid var(--border);
+    transition: all 0.25s ease;
+}
+.btn-secondary:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 16px oklch(65% .25 265 / 0.1);
+    transform: translateY(-1px);
+}
+
+/* Badge/pill */
+.badge {
+    background: var(--muted);
+    border: 1px solid var(--border-subtle);
+    color: var(--muted-fg);
+}
+
+/* Colored accent cards */
+.accent-blue {
+    border-color: oklch(65% .25 265 / 0.3);
+}
+.accent-blue:hover {
+    border-color: oklch(65% .25 265);
+    box-shadow: 0 8px 32px oklch(65% .25 265 / 0.2);
+}
+
+.accent-pink {
+    border-color: oklch(65% .25 350 / 0.3);
+}
+.accent-pink:hover {
+    border-color: oklch(65% .25 350);
+    box-shadow: 0 8px 32px oklch(65% .25 350 / 0.2);
+}
+
+.accent-orange {
+    border-color: oklch(70% .20 50 / 0.3);
+}
+.accent-orange:hover {
+    border-color: oklch(70% .20 50);
+    box-shadow: 0 8px 32px oklch(70% .20 50 / 0.2);
+}
+
+/* Header blur */
+.header-glass {
+    background: oklch(15% .02 265 / 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Nav link hover */
+.nav-link {
+    color: var(--muted-fg);
+    transition: color 0.2s ease;
+}
+.nav-link:hover {
+    color: var(--fg);
+}
+
+/* Gradient section divider */
+.section-gradient {
+    background: linear-gradient(135deg, #070b14, #0e1218, #070b14);
+}
+
+/* Staggered reveal animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* Subtle glow pulse on hero badge */
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 8px oklch(65% .25 265 / 0.15); }
+    50% { box-shadow: 0 0 20px oklch(65% .25 265 / 0.3); }
+}
+
+.glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Success message dark theme */
+.success-msg {
+    background: oklch(30% .1 150 / 0.2);
+    border: 1px solid oklch(60% .2 150 / 0.4);
+    color: oklch(80% .15 150);
+}
+
+/* Footer styling */
+.footer-border {
+    border-top: 1px solid var(--border-subtle);
+    background: oklch(12% .015 265);
 }
